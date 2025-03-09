@@ -1,0 +1,58 @@
+import React, { useState } from 'react'
+import './Venues.css'
+import VenueStatistics  from '../VenueStatistics/VenueStatistics';
+const Venue = () => {
+ 
+    const [venueState, setVenueState] = useState(
+        {
+            venueName: "Wankhede stadium",
+            matchesPlayed: 250,
+            city: "Mumbai",
+            country: "India"
+        });
+
+    //const [venueError, setVenueError]=useState('Venue name must be more than 4 characters long.');
+ //Using a single controller api, is more code efficent and gives good performance.
+ //It is a common controller api.
+    const updateValue = (e) => {
+        const { name, value } = e.target;
+        setVenueState((pre) => ({
+            ...pre, [name]: value,
+        }))
+    }
+ 
+    // const checkVenueName=(venueName)=>{
+    //     if(venueName.target.value.length <= 4 )
+    //         setVenueError('Venue name must be more than 4 characters long.');
+
+
+
+    // }
+
+    return (
+        <div className='container-fluid v' style={{ backgroundColor: 'yellow' }}>
+            <div className='row'><div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6'>
+                <h1 className='h2'>Venue info</h1>
+                <b>Venue Name </b>&nbsp;&nbsp; {venueState.venueName}<br />
+                <b># of matches played </b>&nbsp;&nbsp; {venueState.matchesPlayed}<br />
+                <b>City </b>&nbsp;&nbsp; {venueState.city}<br />
+                <b>Country </b>&nbsp;&nbsp; {venueState.country}<br />
+ 
+            </div>
+                <div style={{ backgroundColor: 'lime' }}>
+                    <form>
+                        <label>Venue name </label> &nbsp;&nbsp;<input type='text' name='venueName' value={venueState.venueName} onChange={updateValue} /*onKeyUp={(venueName)=>checkVenueName(venueName)}*/ /><br />
+                        <label>Matches played </label> &nbsp;&nbsp;<input type='text' name='matchesPlayed' value={venueState.matchesPlayed} onChange={updateValue} /><br />
+                        <label>City </label> &nbsp;&nbsp;<input type='text' name='city' value={venueState.city} onChange={updateValue} /><br />
+                        <label>Country </label> &nbsp;&nbsp;<input type='text' name='country' value={venueState.country} onChange={updateValue} /><br />
+                        <button className='btn btn-primary' type='submit' value="save">Save</button> &nbsp;&nbsp;
+                        <button className='btn btn-warning' type='reset' value="reset">Reset</button>&nbsp; &nbsp;
+                        <button className='btn btn-danger' type='button' value="cancel">Cancel</button><br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default  Venue;
